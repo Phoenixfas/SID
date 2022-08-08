@@ -33,6 +33,8 @@ const ArticleType = new GraphQLObjectType({
       },
     },
     sanitizedHtml: { type: GraphQLString },
+    createdAt: { type: GraphQLString },
+    updatedAt: { type: GraphQLString },
   }),
 });
 
