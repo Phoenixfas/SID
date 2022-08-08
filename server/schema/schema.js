@@ -23,6 +23,7 @@ const ArticleType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
+    image: { type: GraphQLString },
     desc: { type: GraphQLString },
     markdown: { type: GraphQLString },
     category: {
@@ -74,6 +75,7 @@ const Mutation = new GraphQLObjectType({
       type: ArticleType,
       args: {
         title: { type: GraphQLString },
+        image: { type: GraphQLString },
         desc: { type: GraphQLString },
         markdown: { type: GraphQLString },
         categoryId: { type: GraphQLID },
@@ -81,6 +83,7 @@ const Mutation = new GraphQLObjectType({
       resolve(parent, args) {
         const article = new Article({
           title: args.title,
+          image: args.image,
           desc: args.desc,
           markdown: args.markdown,
           categoryId: args.categoryId,
@@ -102,6 +105,7 @@ const Mutation = new GraphQLObjectType({
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) },
         title: { type: GraphQLString },
+        image: { type: GraphQLString },
         desc: { type: GraphQLString },
         markdown: { type: GraphQLString },
         categoryId: { type: GraphQLID },
@@ -109,6 +113,7 @@ const Mutation = new GraphQLObjectType({
       resolve(parent, args) {
         return Article.findByIdAndUpdate(args.id, {
           title: args.title,
+          image: args.image,
           desc: args.desc,
           markdown: args.markdown,
           categoryId: args.categoryId,
